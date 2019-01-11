@@ -1,4 +1,4 @@
-package com.github.evgdim.tasktrack;
+package com.github.evgdim.reservations;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
