@@ -1,4 +1,4 @@
-package com.github.evgdim.tasktrack.controller;
+package com.github.evgdim.reservations.controller;
 
 import java.security.Principal;
 

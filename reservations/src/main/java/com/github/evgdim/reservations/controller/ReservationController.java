@@ -1,4 +1,4 @@
-package com.github.evgdim.tasktrack.controller;
+package com.github.evgdim.reservations.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.evgdim.tasktrack.model.Task;
-import com.github.evgdim.tasktrack.repository.TaskRepository;
+import com.github.evgdim.reservations.model.Reservation;
+import com.github.evgdim.reservations.repository.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/reservations")
 @RequiredArgsConstructor
-public class TaskController {
-	private final TaskRepository taskRepo;
+public class ReservationController {
+	private final ReservationRepository reservationRepo;
 	@PostMapping
-	public Mono<Integer> save(@RequestBody Task task) {
-		return this.taskRepo.save(task);
+	public Mono<Integer> save(@RequestBody Reservation task) {
+		return this.reservationRepo.save(task);
 	}
 	
 	@GetMapping
-	public Mono<Task> get(@RequestParam String name) {
-		return this.taskRepo.findByName(name);
+	public Mono<Reservation> get(@RequestParam String name) {
+		return this.reservationRepo.findByName(name);
 	}
 }

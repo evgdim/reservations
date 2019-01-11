@@ -9,11 +9,11 @@
 		<version>2.1.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.github.evgdim.tasktrack</groupId>
-	<artifactId>task-track</artifactId>
+	<groupId>com.github.evgdim.reservatons</groupId>
+	<artifactId>reservations</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>task-track</name>
-	<description>Demo project for Spring Boot</description>
+	<name>reservations</name>
+	<description>Reservations backend</description>
 
 	<properties>
 		<java.version>1.8</java.version>

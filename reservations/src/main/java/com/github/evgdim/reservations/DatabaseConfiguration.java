@@ -1,4 +1,4 @@
-package com.github.evgdim.tasktrack;
+package com.github.evgdim.reservations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

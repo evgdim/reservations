@@ -1,11 +1,9 @@
-package com.github.evgdim.tasktrack;
+package com.github.evgdim.reservations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-
-import com.github.evgdim.tasktrack.security.CustomSecurityContextRepository;
 
 @EnableWebFluxSecurity
 public class SecurityConfiguration {
@@ -14,14 +12,15 @@ public class SecurityConfiguration {
     SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) {
         return http
             .authorizeExchange()
-            .pathMatchers("/token", "/task", "/h2-console").permitAll()
+            .pathMatchers("/task", "/h2-console").permitAll()
             .anyExchange().authenticated()
             .and()
-            .securityContextRepository(new CustomSecurityContextRepository())
-            .httpBasic().disable()
+            .httpBasic().and()
             .formLogin().disable()
             .csrf().disable()
             .build();
     }
+    
+    
    
 }

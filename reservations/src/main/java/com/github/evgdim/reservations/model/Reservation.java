@@ -1,4 +1,4 @@
-package com.github.evgdim.tasktrack.model;
+package com.github.evgdim.reservations.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Task {
+public class Reservation {
 	private String name;
 }
