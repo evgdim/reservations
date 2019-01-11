@@ -1,5 +1,9 @@
 package com.github.evgdim.reservations;
 
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalUnit;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +23,10 @@ public class ReservationRepositoryTests {
 
 	@Test
 	public void reservationShouldBeSaved() {
-		Reservation reservation = new Reservation("my-reservation");
+		String name = "my-reservation";
+		LocalDateTime start = LocalDateTime.now();
+		LocalDateTime end = LocalDateTime.now().plusDays(1);
+		Reservation reservation = new Reservation(null,name,"", start, end, null, null);
 		StepVerifier.create(
 			this.reservationRepo.save(reservation)
 		)
@@ -31,12 +38,17 @@ public class ReservationRepositoryTests {
 	@Test
 	public void reservationShouldBeSavedAndFound() {
 		String name = "my-reservation";
-		Reservation reservation = new Reservation(name);
+		LocalDateTime start = LocalDateTime.now();
+		LocalDateTime end = LocalDateTime.now().plusDays(1);
+		Reservation reservation = new Reservation(null,name,"", start, end, null, null);
 		StepVerifier.create(
 			this.reservationRepo.save(reservation)
 				.then(reservationRepo.findByDecription(name))
 		)
-		.expectNextMatches(res -> name.equals(res.getDescription()))
+		.expectNextMatches(res -> name.equals(res.getDescription()) 
+									&& start.equals(res.getStart())
+									&& end.equals(res.getEnd())
+						)
 		.expectComplete()
 		.verify();
 	}
