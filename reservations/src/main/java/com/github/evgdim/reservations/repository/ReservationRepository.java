@@ -13,10 +13,10 @@ import reactor.core.publisher.Mono;
 public class ReservationRepository {
 	private final DatabaseClient db;
 	
-	public Mono<Integer> save(Reservation task) {
+	public Mono<Integer> save(Reservation reservation) {
 		return db.execute()
 				.sql("insert into RESERVATION (description) values($1)")
-				.bind("$1", task.getDescription())
+				.bind("$1", reservation.getDescription())
 				.fetch().rowsUpdated();
 	}
 	
