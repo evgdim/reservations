@@ -25,6 +25,6 @@ public class ReservationController {
 	
 	@GetMapping
 	public Mono<Reservation> get(@RequestParam String name) {
-		return this.reservationRepo.findByName(name);
+		return this.reservationRepo.findByDecription(name);
 	}
 }

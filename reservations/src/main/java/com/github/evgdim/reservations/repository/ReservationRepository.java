@@ -15,15 +15,15 @@ public class ReservationRepository {
 	
 	public Mono<Integer> save(Reservation task) {
 		return db.execute()
-				.sql("insert into RESERVATION (name) values($1)")
-				.bind("$1", task.getName())
+				.sql("insert into RESERVATION (description) values($1)")
+				.bind("$1", task.getDescription())
 				.fetch().rowsUpdated();
 	}
 	
-	public Mono<Reservation> findByName(String name) {
+	public Mono<Reservation> findByDecription(String name) {
 		return db.execute()
-				.sql("select * from RESERVATION where name = $1")
+				.sql("select * from RESERVATION where description = $1")
 				.bind("$1", name)
-				.map((r, rm) -> new Reservation(r.get("name", String.class))).first();
+				.map((r, rm) -> new Reservation(r.get("description", String.class))).first();
 	}
 }

@@ -1,4 +1,4 @@
 CREATE TABLE reservation (
  id IDENTITY PRIMARY KEY,
- name VARCHAR(25) NOT NULL 
+ description VARCHAR(25) NOT NULL 
 );
