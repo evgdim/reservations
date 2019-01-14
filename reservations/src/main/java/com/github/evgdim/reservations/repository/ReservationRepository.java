@@ -1,8 +1,10 @@
 package com.github.evgdim.reservations.repository;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.function.BiFunction;
 
@@ -39,16 +41,20 @@ public class ReservationRepository {
 		return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 	}
 	
+	private Timestamp toTimestamp(LocalDateTime ldt) {
+		return ldt != null ? Timestamp.valueOf(ldt) : null;
+	}
+	
 	public Mono<Integer> save(Reservation reservation) {
 		GenericExecuteSpec sql = db.execute()
-				.sql("insert into RESERVATION (description) "
-						+ "values($1)");
+				.sql("insert into RESERVATION (description, detailed_description, start, end, user_id, resource_id) "
+						+ "values($1, $2, $3, $4, $5, $6)");
 		sql = sql.bind("$1", reservation.getDescription());
-//		if(reservation.getDetailedDescription() != null) sql.bind("$2", reservation.getDetailedDescription()); else sql.bindNull("$2", String.class);
-//		if(reservation.getStart() != null) sql.bind("$3", reservation.getStart()); else sql.bindNull("$3", LocalDateTime.class);
-//		if(reservation.getEnd() != null) sql.bind("$4", reservation.getEnd()); else sql.bindNull("$4", LocalDateTime.class);
-//		if(reservation.getUser() != null)  sql.bind("$5", reservation.getUser().getId()); else sql.bindNull("$5", Long.class);
-//		if(reservation.getResource() != null) sql.bind("$6", reservation.getResource().getId()); else sql.bindNull("$6", Long.class);
+		if(reservation.getDetailedDescription() != null) sql = sql.bind("$2", reservation.getDetailedDescription()); else sql = sql.bindNull("$2", String.class);
+		if(reservation.getStart() != null) sql = sql.bind("$3", toTimestamp(reservation.getStart())); else sql = sql.bindNull("$3", Timestamp.class);
+		if(reservation.getEnd() != null) sql = sql.bind("$4", toTimestamp(reservation.getEnd())); else sql = sql.bindNull("$4", Timestamp.class);
+		if(reservation.getUser() != null)  sql = sql.bind("$5", reservation.getUser().getId()); else sql = sql.bindNull("$5", Long.class);
+		if(reservation.getResource() != null) sql = sql.bind("$6", reservation.getResource().getId()); else sql = sql.bindNull("$6", Long.class);
 		return sql.fetch().rowsUpdated();
 	}
 	

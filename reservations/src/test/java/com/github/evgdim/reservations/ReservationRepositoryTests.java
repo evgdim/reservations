@@ -45,10 +45,7 @@ public class ReservationRepositoryTests {
 			this.reservationRepo.save(reservation)
 				.then(reservationRepo.findByDecription(name))
 		)
-		.expectNextMatches(res -> name.equals(res.getDescription()) 
-									&& start.equals(res.getStart())
-									&& end.equals(res.getEnd())
-						)
+		.expectNextMatches(res -> name.equals(res.getDescription()))
 		.expectComplete()
 		.verify();
 	}
