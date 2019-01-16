@@ -1,8 +1,6 @@
 package com.github.evgdim.reservations;
 
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalUnit;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
