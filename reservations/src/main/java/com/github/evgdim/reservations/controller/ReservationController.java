@@ -11,7 +11,6 @@ import com.github.evgdim.reservations.model.Reservation;
 import com.github.evgdim.reservations.repository.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/reservations")
@@ -19,12 +18,12 @@ import reactor.core.publisher.Mono;
 public class ReservationController {
 	private final ReservationRepository reservationRepo;
 	@PostMapping
-	public Mono<Integer> save(@RequestBody Reservation task) {
-		return this.reservationRepo.save(task);
+	public Reservation save(@RequestBody Reservation reservation) {
+		return this.reservationRepo.save(reservation);
 	}
 	
 	@GetMapping
-	public Mono<Reservation> get(@RequestParam String name) {
-		return this.reservationRepo.findByDecription(name);
+	public Reservation get(@RequestParam String name) {
+		return this.reservationRepo.findByDescription(name);
 	}
 }
