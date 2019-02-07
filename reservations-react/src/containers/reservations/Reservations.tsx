@@ -22,7 +22,7 @@ export default class Reservations extends React.Component<ReservationsProps, Res
     .then(data => {
       console.log("in then")
       console.log(data)
-      this.setState(prevState => {
+      this.setState({
         reservations: data
       })
     })
@@ -32,7 +32,7 @@ export default class Reservations extends React.Component<ReservationsProps, Res
     console.log(this.state)
     return (
       <div>
-        Reservations: {this.state.reservations.id}
+        Reservations: {this.state.reservations.description}
       </div>
     );
   }
