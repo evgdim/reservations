@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import './App.css';
 
 import Home from './containers/home/Home';
-import Tasks from './containers/tasks/Tasks';
-import NewTask from './containers/new-task/NewTask';
+import Reservations from './containers/reservations/Reservations';
+import NewReservation from './containers/new-reservation/NewReservation';
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
           <div className="uk-navbar-center">
             <ul className="uk-navbar-nav">
               <li className="uk-active"><Link to="/">Home</Link></li>
-              <li><Link to="/tasks">Tasks</Link></li>
+              <li><Link to="/tasks">Reservations</Link></li>
               <li><Link to="/new">New</Link></li>
             </ul>
 
@@ -26,8 +26,8 @@ class App extends Component {
         <div className="uk-container">
           <Switch>
             <Route path="/" exact component={Home}></Route>
-            <Route path="/tasks" component={Tasks}></Route>
-            <Route path="/new" component={NewTask}></Route>
+            <Route path="/tasks" component={Reservations}></Route>
+            <Route path="/new" component={NewReservation}></Route>
           </Switch>
         </div>
       </div>

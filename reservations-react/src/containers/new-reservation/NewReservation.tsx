@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-export interface NewTaskProps {
+export interface NewReservationProps {
 }
 
-export default class NewTask extends React.Component<NewTaskProps, any> {
+export default class NewReservation extends React.Component<NewReservationProps, any> {
   handleCreateClick = () => {
     console.log('click');
   }
