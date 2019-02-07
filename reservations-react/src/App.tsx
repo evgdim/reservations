@@ -28,7 +28,7 @@ class App extends Component {
               <a className="nav-item nav-link" href="#">Pricing</a>
               <a className="nav-item nav-link disabled" href="#">Disabled</a> */}
               <Link to="/" className="nav-item nav-link active">Home</Link>
-              <Link to="/tasks" className="nav-item nav-link">Reservations</Link>
+              <Link to="/reservations" className="nav-item nav-link">Reservations</Link>
               <Link to="/new" className="nav-item nav-link">New</Link>
             </div>
           </div>
@@ -37,7 +37,7 @@ class App extends Component {
         <div className="uk-container">
           <Switch>
             <Route path="/" exact component={Home}></Route>
-            <Route path="/tasks" component={Reservations}></Route>
+            <Route path="/reservations" component={Reservations}></Route>
             <Route path="/new" component={NewReservation}></Route>
           </Switch>
         </div>
