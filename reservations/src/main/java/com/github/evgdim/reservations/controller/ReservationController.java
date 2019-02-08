@@ -1,5 +1,7 @@
 package com.github.evgdim.reservations.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +25,7 @@ public class ReservationController {
 	}
 	
 	@GetMapping
-	public Reservation get(@RequestParam String name) {
-		return this.reservationRepo.findByDescription(name);
+	public List<Reservation> get(@RequestParam String name) {
+		return this.reservationRepo.findByDescriptionContainingIgnoreCaseOrderByDescriptionAsc(name);
 	}
 }

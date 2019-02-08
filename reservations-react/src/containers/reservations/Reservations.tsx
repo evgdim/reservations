@@ -11,7 +11,7 @@ export default class Reservations extends React.Component<ReservationsProps, Res
   constructor(props: ReservationsProps) {
     super(props);
     this.state = {
-      reservations: {}
+      reservations: []
     }
   }
   
@@ -20,19 +20,18 @@ export default class Reservations extends React.Component<ReservationsProps, Res
     fetch("http://localhost:8080/reservations?name=asd", { method:'GET', headers: new Headers({'Authorization':'Basic ' + btoa("user:password")})})
     .then(res => res.json())
     .then(data => {
-      console.log("in then")
-      console.log(data)
       this.setState({
         reservations: data
       })
     })
     .catch(err => console.error(err))
   }
+
   public render() {
-    console.log(this.state)
+    let reservationsList = this.state.reservations.map((r: any) => <div key={r.id}>{r.description}</div>);
     return (
       <div>
-        Reservations: {this.state.reservations.description}
+        Reservations: {reservationsList}
       </div>
     );
   }
