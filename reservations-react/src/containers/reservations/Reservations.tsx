@@ -28,11 +28,30 @@ export default class Reservations extends React.Component<ReservationsProps, Res
   }
 
   public render() {
-    let reservationsList = this.state.reservations.map((r: any) => <div key={r.id}>{r.description}</div>);
+    let reservationsList = this.state.reservations.map((r: any) => 
+      <tr key={r.id}>
+        <th scope="row"></th>
+        <td>{r.description}</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>);
     return (
       <div>
-        Reservations: {reservationsList}
+        <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reservationsList}
+        </tbody>
+        </table>
       </div>
+
     );
   }
 }
