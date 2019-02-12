@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.github.evgdim.reservations.model.Reservation;
-import com.github.evgdim.reservations.model.dto.ReservationDto;
+import com.github.evgdim.reservations.model.dto.ReservationSaveDto;
 import com.github.evgdim.reservations.model.mappers.ReservationMapper;
 import com.github.evgdim.reservations.model.mappers.ReservationMapperImpl;
 
@@ -29,7 +29,7 @@ public class ReservationMapperTests {
 	@Test
 	public void reservationDtoToReservation_shouldMap() {
 		LocalDateTime start = LocalDateTime.now();
-		ReservationDto dto = getDto(start);
+		ReservationSaveDto dto = getDto(start);
 		Reservation res = reservationMapper.reservationDtoToReservation(dto);
 		assertThat(res.getDescription()).isEqualTo("desc");
 		assertThat(res.getStart()).isEqualTo(start);
@@ -39,7 +39,7 @@ public class ReservationMapperTests {
 	@Test
 	public void reservationDtoToReservation_shouldMapResourceAndUserToNull_whenMissingInDto() {
 		LocalDateTime start = LocalDateTime.now();
-		ReservationDto dto = getDto(start);
+		ReservationSaveDto dto = getDto(start);
 		dto.setUserId(null);
 		dto.setResourceId(null);
 		Reservation res = reservationMapper.reservationDtoToReservation(dto);
@@ -47,8 +47,8 @@ public class ReservationMapperTests {
 		assertThat(res.getResource()).isNull();
 	}
 	
-	private ReservationDto getDto(LocalDateTime start) {
-		ReservationDto dto = new ReservationDto();
+	private ReservationSaveDto getDto(LocalDateTime start) {
+		ReservationSaveDto dto = new ReservationSaveDto();
 		dto.setDescription("desc");
 		dto.setDetailedDescription("detDesc");
 		dto.setStart(start);
