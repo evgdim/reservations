@@ -2,37 +2,48 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { withStyles } from '@material-ui/core/styles';
+
 import './App.css';
 
 import Home from './containers/home/Home';
 import Reservations from './containers/reservations/Reservations';
 import NewReservation from './containers/new-reservation/NewReservation';
 
-class App extends Component {
-  render() {
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
+
+function App(props: any) {
+  const { classes } = props;
     return (
-      <div>
-        
-              {/* <Link to="/">Home</Link>
-              <Link to="/tasks">Reservations</Link>
-              <Link to="/new">New</Link> */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">Navbar</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              {/* <a className="nav-item nav-link active" href="#">Home <span className="sr-only">(current)</span></a>
-              <a className="nav-item nav-link" href="#">Features</a>
-              <a className="nav-item nav-link" href="#">Pricing</a>
-              <a className="nav-item nav-link disabled" href="#">Disabled</a> */}
-              <Link to="/" className="nav-item nav-link active">Home</Link>
-              <Link to="/reservations" className="nav-item nav-link">Reservations</Link>
-              <Link to="/new" className="nav-item nav-link">New</Link>
-            </div>
-          </div>
-        </nav>
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              News
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
 
         <div className="uk-container">
           <Switch>
@@ -43,7 +54,6 @@ class App extends Component {
         </div>
       </div>
     );
-  }
 }
 
-export default App;
+export default withStyles(styles)(App);
