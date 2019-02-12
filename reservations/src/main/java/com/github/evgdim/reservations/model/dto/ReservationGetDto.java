@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReservationDto {
+public class ReservationGetDto {
 	private Long id;
 	private String description;
 	private String detailedDescription;
 	private LocalDateTime start;
 	private LocalDateTime end;
-	private Long userId;
-	private Long resourceId;
 }

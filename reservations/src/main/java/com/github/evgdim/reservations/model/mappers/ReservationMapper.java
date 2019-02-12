@@ -7,7 +7,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
 import com.github.evgdim.reservations.model.Reservation;
-import com.github.evgdim.reservations.model.dto.ReservationDto;
+import com.github.evgdim.reservations.model.dto.ReservationSaveDto;
 
 @Mapper(componentModel="spring")
 public interface ReservationMapper {
@@ -16,10 +16,10 @@ public interface ReservationMapper {
         @Mapping(source = "userId", target = "user.id"),
         @Mapping(source = "resourceId", target = "resource.id")
     })
-    Reservation reservationDtoToReservation(ReservationDto reservationDto);
+    Reservation reservationDtoToReservation(ReservationSaveDto reservationDto);
     
     @AfterMapping
-    default void setUserAndResourceToNullIfEmpty(ReservationDto reservationDto, @MappingTarget Reservation reservation) {
+    default void setUserAndResourceToNullIfEmpty(ReservationSaveDto reservationDto, @MappingTarget Reservation reservation) {
     	if(reservation.getUser() != null && reservation.getUser().getId() == null) {
     		reservation.setUser(null);
     	}

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.evgdim.reservations.model.Reservation;
-import com.github.evgdim.reservations.model.dto.ReservationDto;
+import com.github.evgdim.reservations.model.dto.ReservationSaveDto;
 import com.github.evgdim.reservations.repository.ReservationRepository;
 import com.github.evgdim.reservations.service.ReservationService;
 
@@ -23,7 +23,7 @@ public class ReservationController {
 	private final ReservationRepository reservationRepo;
 	private final ReservationService reservationService;
 	@PostMapping
-	public Reservation save(@RequestBody ReservationDto reservation) {
+	public Reservation save(@RequestBody ReservationSaveDto reservation) {
 		return this.reservationService.save(reservation);
 	}
 	
