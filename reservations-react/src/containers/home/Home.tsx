@@ -3,12 +3,10 @@ import * as React from 'react';
 export interface HomeProps {
 }
 
-export default class Home extends React.Component<HomeProps, any> {
-  public render() {
+export default function Home (props: HomeProps) {
     return (
       <div>
         Home
       </div>
     );
-  }
 }
